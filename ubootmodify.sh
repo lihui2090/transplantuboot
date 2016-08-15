@@ -5,7 +5,7 @@ TOPDIR=${WORK_DIR}/u-boot-2009.11
 
 down_uboot_src(){
 	cd ${WORK_DIR}
-	if [ !-f u-boot-2009.11.tar.bz2  ] ; then
+	if [ ! -f u-boot-2009.11.tar.bz2  ] ; then
 	wget ftp://ftp.denx.de/pub/u-boot/u-boot-2009.11.tar.bz2
 	fi
 }
