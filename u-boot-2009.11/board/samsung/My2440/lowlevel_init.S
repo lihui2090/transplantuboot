@@ -123,7 +123,15 @@
 #define Trp			0x0	/* 2clk */
 #define Trc			0x3	/* 7clk */
 #define Tchr			0x2	/* 3clk */
-#define REFCNT			1113	/* period=15.6us, HCLK=60Mhz, (2048+1-15.6*60) */
+#define REFCNT			1269	/* period=7.8us, HCLK=60Mhz, (2048+1-7.8*100) */
+
+#define CLKDIVN 0X4C000014
+#define CLK_CTL_BASE 	0X4C000000
+#define MDIV_405 0x7f << 12
+#define PSDIV_405 0x21
+#define MDIV MDIV_405
+#define PSDOV PSDIV_405
+#define CLKDIV 0X5
 /**************************************/
 
 _TEXT_BASE:
@@ -131,9 +139,66 @@ _TEXT_BASE:
 
 .globl lowlevel_init
 lowlevel_init:
-	/* memory control configuration */
-	/* make r0 relative the current location so that it */
-	/* reads SMRDATA out of FLASH rather than memory ! */
+
+
+	mov ip, lr
+	bl pre_lowlevel_init
+	bl system_clock_init
+	bl mem_ctrl_asm_init
+	mov lr, ip
+	mov pc, lr
+
+
+/* turn off the watchdog */
+pre_lowlevel_init:
+#  define pWTCON	0x53000000
+#  define INTMSK	0x4A000008	/* Interupt-Controller base addresses */
+#  define INTSUBMSK	0x4A00001C
+#  define CLKDIVN	0x4C000014	/* clock divisor register */
+
+
+	ldr	r0, =pWTCON
+	mov	r1, #0x0
+	str	r1, [r0]
+
+	/*
+	 * mask all IRQs by setting all bits in the INTMR - default
+	 */
+	mov	r1, #0xffffffff
+	ldr	r0, =INTMSK
+	str	r1, [r0]
+
+	ldr	r1, =0x3ff
+	ldr	r0, =INTSUBMSK
+
+	/* FCLK:HCLK:PCLK = 1:2:4 */
+	/* default FCLK is 120 MHz ! */
+	ldr	r0, =CLKDIVN
+	mov	r1, #3
+	str	r1, [r0]
+	mv pc, lr
+
+system_clock_init:
+	ldr r0, =CLKDIVN
+	mov r1,#CLKDIV
+	str r1, [r0]
+
+
+	mrc p15, 0, r1, c1, c0 ,0
+	orr r1, r1, #0xc0000000
+	mcr p15, 0, r1, c1, c0, 0
+	mov r1, #CLK_CTL_BASE
+	mov r2, #mdiv
+	add r2, r2, #PSDIV
+	str r2, [r1, #0x04]
+	mov pc, lr
+
+
+/* memory control configuration */
+/* make r0 relative the current location so that it */
+/* reads SMRDATA out of FLASH rather than memory ! */
+
+mem_ctrl_asm_init:
 	ldr     r0, =SMRDATA
 	ldr	r1, _TEXT_BASE
 	sub	r0, r0, r1
@@ -150,7 +215,6 @@ lowlevel_init:
 
 	.ltorg
 /* the literal pools origin */
-
 SMRDATA:
     .word (0+(B1_BWSCON<<4)+(B2_BWSCON<<8)+(B3_BWSCON<<12)+(B4_BWSCON<<16)+(B5_BWSCON<<20)+(B6_BWSCON<<24)+(B7_BWSCON<<28))
     .word ((B0_Tacs<<13)+(B0_Tcos<<11)+(B0_Tacc<<8)+(B0_Tcoh<<6)+(B0_Tah<<4)+(B0_Tacp<<2)+(B0_PMC))

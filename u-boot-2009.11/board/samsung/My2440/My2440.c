@@ -37,11 +37,12 @@ DECLARE_GLOBAL_DATA_PTR;
 #define M_MDIV	0xC3
 #define M_PDIV	0x4
 #define M_SDIV	0x1
-#elif FCLK_SPEED==1		/* Fout = 202.8MHz */
-#define M_MDIV	0xA1
-#define M_PDIV	0x3
+#elif FCLK_SPEED==1		/* */
+#define M_MDIV	0x7f
+#define M_PDIV	0x2
 #define M_SDIV	0x1
 #endif
+
 
 #define USB_CLOCK 1
 
