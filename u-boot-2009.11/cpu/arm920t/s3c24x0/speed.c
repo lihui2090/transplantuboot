@@ -36,8 +36,10 @@
 
 #if defined(CONFIG_S3C2400)
 #include <s3c2400.h>
-#elif defined(CONFIG_S3C2410) || defined (CONFIG_S3C2440)
+#elif defined(CONFIG_S3C2410)
 #include <s3c2410.h>
+#elif defined(CONFIG_S3C2440) 
+#include <s3c2440.h>
 #endif
 
 #define MPLL 0
