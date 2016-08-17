@@ -21,7 +21,6 @@
 #include <common.h>
 
 #include <nand.h>
-#include <s3c2410.h>
 #include <s3c2440.h>
 #include <asm/io.h>
 
