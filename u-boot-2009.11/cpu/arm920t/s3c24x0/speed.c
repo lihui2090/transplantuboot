@@ -30,7 +30,7 @@
  */
 
 #include <common.h>
-#if defined(CONFIG_S3C2400) || defined (CONFIG_S3C2410) || defined (CONFIG_TRAB) || defined (CONFIG_S3C2440)
+#if defined(CONFIG_S3C2400) || defined (CONFIG_S3C2410) || defined (CONFIG_S3C2440) || defined (CONFIG_TRAB)
 
 #include <asm/io.h>
 
@@ -121,4 +121,5 @@ ulong get_UCLK(void)
 
 #endif /* defined(CONFIG_S3C2400) ||
 	  defined (CONFIG_S3C2410) ||
-	  defined (CONFIG_TRAB) || defined  (CONDIF_S3C2440) */
+	  || defined  (CONDIF_S3C2440)
+	  defined (CONFIG_TRAB)  */

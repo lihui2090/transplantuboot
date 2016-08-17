@@ -66,87 +66,86 @@
 
 /* include common stuff */
 #include <s3c24x0.h>
-
 typedef enum {
 	S3C24X0_UART0,
 	S3C24X0_UART1,
 	S3C24X0_UART2
 } S3C24X0_UARTS_NR;
 
-static inline S3C24X0_MEMCTL * S3C24X0_GetBase_MEMCTL(void)
+static inline struct s3c24x0_memctl *s3c24x0_get_base_memctl(void)
 {
-	return (S3C24X0_MEMCTL * const)S3C24X0_MEMCTL_BASE;
+	return (struct s3c24x0_memctl *)S3C24X0_MEMCTL_BASE;
 }
-static inline S3C24X0_USB_HOST * S3C24X0_GetBase_USB_HOST(void)
+static inline struct s3c24x0_usb_host *s3c24x0_get_base_usb_host(void)
 {
-	return (S3C24X0_USB_HOST * const)S3C24X0_USB_HOST_BASE;
+	return (struct s3c24x0_usb_host *)S3C24X0_USB_HOST_BASE;
 }
-static inline S3C24X0_INTERRUPT * S3C24X0_GetBase_INTERRUPT(void)
+static inline struct s3c24x0_interrupt *s3c24x0_get_base_interrupt(void)
 {
-	return (S3C24X0_INTERRUPT * const)S3C24X0_INTERRUPT_BASE;
+	return (struct s3c24x0_interrupt *)S3C24X0_INTERRUPT_BASE;
 }
-static inline S3C24X0_DMAS * S3C24X0_GetBase_DMAS(void)
+static inline struct s3c24x0_dmas *s3c24x0_get_base_dmas(void)
 {
-	return (S3C24X0_DMAS * const)S3C24X0_DMA_BASE;
+	return (struct s3c24x0_dmas *)S3C24X0_DMA_BASE;
 }
-static inline S3C24X0_CLOCK_POWER * S3C24X0_GetBase_CLOCK_POWER(void)
+static inline struct s3c24x0_clock_power *s3c24x0_get_base_clock_power(void)
 {
-	return (S3C24X0_CLOCK_POWER * const)S3C24X0_CLOCK_POWER_BASE;
+	return (struct s3c24x0_clock_power *)S3C24X0_CLOCK_POWER_BASE;
 }
-static inline S3C24X0_LCD * S3C24X0_GetBase_LCD(void)
+static inline struct s3c24x0_lcd *s3c24x0_get_base_lcd(void)
 {
-	return (S3C24X0_LCD * const)S3C24X0_LCD_BASE;
+	return (struct s3c24x0_lcd *)S3C24X0_LCD_BASE;
 }
-static inline S3C2440_NAND * S3C2440_GetBase_NAND(void)
+static inline struct s3c2410_nand *s3c2410_get_base_nand(void)
 {
-	return (S3C2440_NAND * const)S3C2440_NAND_BASE;
+	return (struct s3c2410_nand *)S3C2410_NAND_BASE;
 }
-static inline S3C24X0_UART * S3C24X0_GetBase_UART(S3C24X0_UARTS_NR nr)
+static inline struct s3c24x0_uart
+	*s3c24x0_get_base_uart(enum s3c24x0_uarts_nr n)
 {
-	return (S3C24X0_UART * const)(S3C24X0_UART_BASE + (nr * 0x4000));
+	return (struct s3c24x0_uart *)(S3C24X0_UART_BASE + (n * 0x4000));
 }
-static inline S3C24X0_TIMERS * S3C24X0_GetBase_TIMERS(void)
+static inline struct s3c24x0_timers *s3c24x0_get_base_timers(void)
 {
-	return (S3C24X0_TIMERS * const)S3C24X0_TIMER_BASE;
+	return (struct s3c24x0_timers *)S3C24X0_TIMER_BASE;
 }
-static inline S3C24X0_USB_DEVICE * S3C24X0_GetBase_USB_DEVICE(void)
+static inline struct s3c24x0_usb_device *s3c24x0_get_base_usb_device(void)
 {
-	return (S3C24X0_USB_DEVICE * const)S3C24X0_USB_DEVICE_BASE;
+	return (struct s3c24x0_usb_device *)S3C24X0_USB_DEVICE_BASE;
 }
-static inline S3C24X0_WATCHDOG * S3C24X0_GetBase_WATCHDOG(void)
+static inline struct s3c24x0_watchdog *s3c24x0_get_base_watchdog(void)
 {
-	return (S3C24X0_WATCHDOG * const)S3C24X0_WATCHDOG_BASE;
+	return (struct s3c24x0_watchdog *)S3C24X0_WATCHDOG_BASE;
 }
-static inline S3C24X0_I2C * S3C24X0_GetBase_I2C(void)
+static inline struct s3c24x0_i2c *s3c24x0_get_base_i2c(void)
 {
-	return (S3C24X0_I2C * const)S3C24X0_I2C_BASE;
+	return (struct s3c24x0_i2c *)S3C24X0_I2C_BASE;
 }
-static inline S3C24X0_I2S * S3C24X0_GetBase_I2S(void)
+static inline struct s3c24x0_i2s *s3c24x0_get_base_i2s(void)
 {
-	return (S3C24X0_I2S * const)S3C24X0_I2S_BASE;
+	return (struct s3c24x0_i2s *)S3C24X0_I2S_BASE;
 }
-static inline S3C24X0_GPIO * S3C24X0_GetBase_GPIO(void)
+static inline struct s3c24x0_gpio *s3c24x0_get_base_gpio(void)
 {
-	return (S3C24X0_GPIO * const)S3C24X0_GPIO_BASE;
+	return (struct s3c24x0_gpio *)S3C24X0_GPIO_BASE;
 }
-static inline S3C24X0_RTC * S3C24X0_GetBase_RTC(void)
+static inline struct s3c24x0_rtc *s3c24x0_get_base_rtc(void)
 {
-	return (S3C24X0_RTC * const)S3C24X0_RTC_BASE;
+	return (struct s3c24x0_rtc *)S3C24X0_RTC_BASE;
 }
-/*
-static inline S3C2440_ADC * S3C2440_GetBase_ADC(void)
+static inline struct s3c2410_adc *s3c2410_get_base_adc(void)
 {
-	return (S3C2440_ADC * const)S3C2440_ADC_BASE;
+	return (struct s3c2410_adc *)S3C2410_ADC_BASE;
 }
-static inline S3C24X0_SPI * S3C24X0_GetBase_SPI(void)
+static inline struct s3c24x0_spi *s3c24x0_get_base_spi(void)
 {
-	return (S3C24X0_SPI * const)S3C24X0_SPI_BASE;
+	return (struct s3c24x0_spi *)S3C24X0_SPI_BASE;
 }
-*/
-static inline S3C2410_SDI * S3C2410_GetBase_SDI(void)
+static inline struct s3c2410_sdi *s3c2410_get_base_sdi(void)
 {
-	return (S3C2410_SDI * const)S3C2440_SDI_BASE;
+	return (struct s3c2410_sdi *)S3C2410_SDI_BASE;
 }
+
 
 #endif /* __ASSEMBLER__ */
 
