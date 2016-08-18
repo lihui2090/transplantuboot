@@ -66,3 +66,49 @@ grep "CONFIG_S3C2410" -rn ./
 ./drivers/serial/serial_s3c24x0.c:24:#elif defined(CONFIG_S3C2410)
 ./drivers/rtc/s3c24x0_rtc.c:35:#elif defined(CONFIG_S3C2410)
 
+and modify according  the compile 
+
+after compile no err  it can downloadd and run in ram
+
+##### FriendlyARM BIOS 2.0 for 2440 #####
+[x] format NAND FLASH for Linux
+[v] Download vivi 
+[k] Download linux kernel 
+[y] Download root_yaffs image 
+[a] Absolute User Application
+[n] Download Nboot for WinCE 
+[l] Download WinCE boot-logo
+[w] Download WinCE NK.bin 
+[d] Download & Run 
+[z] Download zImage into RAM 
+[g] Boot linux from RAM 
+[f] Format the nand flash                                                       
+[b] Boot the system                                                             
+[s] Set the boot parameters                                                     
+[u] Backup NAND Flash to HOST through USB(upload)                               
+[r] Restore NAND Flash from HOST through USB                                    
+[q] Goto shell of vivi                                                          
+[i] Version: 1138-2K                                                            
+Enter your selection: d                                                         
+Clear the free memory                                                           
+USB host is connected. Waiting a download.                                      
+                                                                                
+Now, Downloading [ADDRESS:32000000h,TOTAL:106110]                               
+RECEIVED FILE SIZE:  106110 (103KB/S, 1S)                                       
+Downloaded file at 0x30000000, size = 106100 bytes                              
+                                                                                
+                                                                                
+U-Boot 2009.11-dirty (Aug 17 2016 - 23:31:19)                                   
+                                                                                
+DRAM:  64 MB                                                                    
+Flash: 512 kB                                                                   
+*** Warning - bad CRC, using default environment                                
+                                                                                
+In:    serial                                                                   
+Out:   serial                                                                   
+Err:   serial                                                                   
+Net:   CS8900-0                                                                 
+MY2440 # ls                                                                     
+Unknown command 'ls' - try 'help'                                               
+MY2440 # 
+
