@@ -96,9 +96,9 @@ static inline struct s3c24x0_lcd *s3c24x0_get_base_lcd(void)
 {
 	return (struct s3c24x0_lcd *)S3C24X0_LCD_BASE;
 }
-static inline struct s3c2410_nand *s3c2410_get_base_nand(void)
+static inline struct s3c2440_nand *s3c2440_get_base_nand(void)
 {
-	return (struct s3c2410_nand *)S3C2440_NAND_BASE;
+	return (struct s3c2440_nand *)S3C2440_NAND_BASE;
 }
 static inline struct s3c24x0_uart
 	*s3c24x0_get_base_uart(enum s3c24x0_uarts_nr n)
@@ -133,17 +133,17 @@ static inline struct s3c24x0_rtc *s3c24x0_get_base_rtc(void)
 {
 	return (struct s3c24x0_rtc *)S3C24X0_RTC_BASE;
 }
-static inline struct s3c2410_adc *s3c2410_get_base_adc(void)
+static inline struct s3c2440_adc *s3c2440_get_base_adc(void)
 {
-	return (struct s3c2410_adc *)S3C2440_ADC_BASE;
+	return (struct s3c2440_adc *)S3C2440_ADC_BASE;
 }
 static inline struct s3c24x0_spi *s3c24x0_get_base_spi(void)
 {
 	return (struct s3c24x0_spi *)S3C24X0_SPI_BASE;
 }
-static inline struct s3c2410_sdi *s3c2410_get_base_sdi(void)
+static inline struct s3c2440_sdi *s3c2440_get_base_sdi(void)
 {
-	return (struct s3c2410_sdi *)S3C2440_SDI_BASE;
+	return (struct s3c2440_sdi *)S3C2440_SDI_BASE;
 }
 
 
