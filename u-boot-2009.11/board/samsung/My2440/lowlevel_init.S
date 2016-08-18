@@ -130,7 +130,7 @@
 #define MDIV_405 0x7f << 12
 #define PSDIV_405 0x21
 #define MDIV MDIV_405
-#define PSDOV PSDIV_405
+#define PSDIV PSDIV_405
 #define CLKDIV 0X5
 /**************************************/
 
@@ -139,8 +139,6 @@ _TEXT_BASE:
 
 .globl lowlevel_init
 lowlevel_init:
-
-
 	mov ip, lr
 	bl pre_lowlevel_init
 	bl system_clock_init
@@ -154,7 +152,7 @@ pre_lowlevel_init:
 #  define pWTCON	0x53000000
 #  define INTMSK	0x4A000008	/* Interupt-Controller base addresses */
 #  define INTSUBMSK	0x4A00001C
-#  define CLKDIVN	0x4C000014	/* clock divisor register */
+
 
 
 	ldr	r0, =pWTCON
@@ -176,7 +174,7 @@ pre_lowlevel_init:
 	ldr	r0, =CLKDIVN
 	mov	r1, #3
 	str	r1, [r0]
-	mv pc, lr
+	mov pc, lr
 
 system_clock_init:
 	ldr r0, =CLKDIVN
@@ -188,7 +186,7 @@ system_clock_init:
 	orr r1, r1, #0xc0000000
 	mcr p15, 0, r1, c1, c0, 0
 	mov r1, #CLK_CTL_BASE
-	mov r2, #mdiv
+	mov r2, #MDIV
 	add r2, r2, #PSDIV
 	str r2, [r1, #0x04]
 	mov pc, lr
