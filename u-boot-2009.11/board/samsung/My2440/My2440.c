@@ -28,6 +28,7 @@
 #include <common.h>
 #include <netdev.h>
 #include <s3c2440.h>
+#include <s3c24x0.h>
 DECLARE_GLOBAL_DATA_PTR;
 
 #define FCLK_SPEED 1

@@ -66,11 +66,11 @@
 
 /* include common stuff */
 #include <s3c24x0.h>
-typedef enum {
+enum s3c24x0_uarts_nr{
 	S3C24X0_UART0,
 	S3C24X0_UART1,
 	S3C24X0_UART2
-} S3C24X0_UARTS_NR;
+};
 
 static inline struct s3c24x0_memctl *s3c24x0_get_base_memctl(void)
 {
@@ -98,7 +98,7 @@ static inline struct s3c24x0_lcd *s3c24x0_get_base_lcd(void)
 }
 static inline struct s3c2410_nand *s3c2410_get_base_nand(void)
 {
-	return (struct s3c2410_nand *)S3C2410_NAND_BASE;
+	return (struct s3c2410_nand *)S3C2440_NAND_BASE;
 }
 static inline struct s3c24x0_uart
 	*s3c24x0_get_base_uart(enum s3c24x0_uarts_nr n)
@@ -135,7 +135,7 @@ static inline struct s3c24x0_rtc *s3c24x0_get_base_rtc(void)
 }
 static inline struct s3c2410_adc *s3c2410_get_base_adc(void)
 {
-	return (struct s3c2410_adc *)S3C2410_ADC_BASE;
+	return (struct s3c2410_adc *)S3C2440_ADC_BASE;
 }
 static inline struct s3c24x0_spi *s3c24x0_get_base_spi(void)
 {
@@ -143,7 +143,7 @@ static inline struct s3c24x0_spi *s3c24x0_get_base_spi(void)
 }
 static inline struct s3c2410_sdi *s3c2410_get_base_sdi(void)
 {
-	return (struct s3c2410_sdi *)S3C2410_SDI_BASE;
+	return (struct s3c2410_sdi *)S3C2440_SDI_BASE;
 }
 
 
